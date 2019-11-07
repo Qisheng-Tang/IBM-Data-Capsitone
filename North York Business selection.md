@@ -22,19 +22,40 @@ For this project, we need prepare several data.
 ### Data Wrangling and Group
 
 We will use Postal Code of different regions in North York to find the list of postal code and information about neighborhoods in North York. Then process the table group with geo location of each neighbourhood into dataframes.
+![Import Data](https://github.com/Qisheng-Tang/IBM-Data-Capsitone/blob/master/Import%20Data.png)
+
 
 ### Connecting to Foursqaure and Retrieving Location data
 
 After finding the list of neighbourhoods, then we can connect to Foursqaure API to gather information about each venue and every neighbourhood. For each neighbourhoods, We can choose radius to 2000 meters far from the center of the neighbourhoods. 2000 meters can help us collect enough information about venues.
 
+In this step, we will need define a function to retrive data and normalize the data.
+![](https://github.com/Qisheng-Tang/IBM-Data-Capsitone/blob/master/截屏2019-11-07下午4.38.51.png)
+
 ### Processing Retrived Data and Creating Dataframe for All the Venues inside North York
 
 When the data is completely collected, we will try to collect some deep level information on that raw data to find our desirable. The feature we will use is the category of venues. We will use one-hot encoded so that different kind of venues will have different feature columns. Add two columns, one is 'Total Restaurant' which calculates total restaurant in a neighbourhood. Another is 'Food Supply' column. We assumed that can reflects the cost of food supply for a Restaurant (The higher 'Food Supply', the cheaper for a restaurant gets food)
+
+Achieving this uses code below
+
+![](https://github.com/Qisheng-Tang/IBM-Data-Capsitone/blob/master/截屏2019-11-07下午4.43.54.png)
 
 ### Applying K-MEANS Algorithm
 
 Then we cluster neighborhoods through K-MEANS Algorithm. We can try to make 5 clusters as I think it is enough. Then we will add a column about cluster results.
 
+First, we need select some feature which are relevant about restaurant and food Supply
+
+![](https://github.com/Qisheng-Tang/IBM-Data-Capsitone/blob/master/Select%20Feature%20.png)
+
+
+Then implementing K-MEANS algorthim
+
+![](https://github.com/Qisheng-Tang/IBM-Data-Capsitone/blob/master/截屏2019-11-07下午4.46.57.png)
 ### Decision Making and Results
 
-Then we can focus on the center of clusters and compare them for their 'Total Restaurant' and 'Food Supply'. The highest center reflects the neighbourhood which is most suiable for openning a restaurant. 
+Then we can focus on the center of clusters and compare them for their 'Total Restaurant' and 'Food Supply'. The highest center reflects the neighbourhood which is most suiable for openning a restaurant.
+
+First, we calculate which cluster contains highest score, Then we find which neighbourhood is best
+
+The result is ![](https://github.com/Qisheng-Tang/IBM-Data-Capsitone/blob/master/Recomment%20the%20best.png)
