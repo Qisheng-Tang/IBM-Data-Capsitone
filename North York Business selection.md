@@ -14,3 +14,27 @@ For this project, we need prepare several data.
 * For each postal code geo location, we can find it is in this .csv file https://cocl.us/Geospatial_data.
 
 * Using Foursqaure API to gain venues in each neighborhoods in North York. To view more information with Foursqaure API, view this website https://developer.foursquare.com/docs/api
+
+* We will need data about different venues in different neighbourhoods of that specific borough. In order to gain that, we will use 'Foursqaure' locational information. by location information for each venue we mean basic and advanced information about the venue. For this project, we need something which is advanced information such as category of that venue and whether this venue is popular.
+
+##Step to achieve
+
+### Data Wrangling and Group
+
+We will use Postal Code of different regions in North York to find the list of postal code and information about neighborhoods in North York. Then process the table group with geo location of each neighbourhood into dataframes.
+
+### Connecting to Foursqaure and Retrieving Location data
+
+After finding the list of neighbourhoods, then we can connect to Foursqaure API to gather information about each venue and every neighbourhood. For each neighbourhoods, We can choose radius to 2000 meters far from the center of the neighbourhoods. 2000 meters can help us collect enough information about venues.
+
+### Processing Retrived Data and Creating Dataframe for All the Venues inside North York
+
+When the data is completely collected, we will try to collect some deep level information on that raw data to find our desirable. The feature we will use is the category of venues. We will use one-hot encoded so that different kind of venues will have different feature columns. Add two columns, one is 'Total Restaurant' which calculates total restaurant in a neighbourhood. Another is 'Food Supply' column. We assumed that can reflects the cost of food supply for a Restaurant (The higher 'Food Supply', the cheaper for a restaurant gets food)
+
+### Applying K-MEANS Algorithm
+
+Then we cluster neighborhoods through K-MEANS Algorithm. We can try to make 5 clusters as I think it is enough. Then we will add a column about cluster results.
+
+### Decision Making and Results
+
+Then we can focus on the center of clusters and compare them for their 'Total Restaurant' and 'Food Supply'. The highest center reflects the neighbourhood which is most suiable for openning a restaurant. 
